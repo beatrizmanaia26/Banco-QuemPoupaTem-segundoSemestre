@@ -58,3 +58,18 @@ void criaCliente(listaClientes *Lt){
     printf("Erro ao criar a conta");
   } 
 }
+void listaCliente(listaClientes Lt){
+  printf("\n");
+  for (int ToDo = 0; ToDo< Lt.quantidade; ToDo++ ){
+    printf("Nome: %s\t\n",Lt.cliente[ToDo].nome);
+    printf("Cpf: %s",Lt.cliente[ToDo].cpf);
+    printf("Saldo: %.2f\t\n",Lt.cliente[ToDo].saldo);
+    if(Lt.cliente[ToDo].tipoConta == 0){
+      printf("Tipo de Conta: Comum\t\n");
+    }
+    else{
+      printf("Tipo de Conta: Plus\t\n");
+    }
+    printf("\n");
+}
+}

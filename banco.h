@@ -22,3 +22,4 @@ typedef enum{err_cria,err_del,err_tipo,err_valor,err_saldo_comum}erros;
 void menu();
 
 void criaCliente(listaClientes *Lt);
+void listaCliente(listaClientes Lt);

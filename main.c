@@ -13,6 +13,9 @@ int main(void) {
       case 1 :
         criaCliente(&Lt);
         break;
+      case 3 :
+        listaCliente(Lt);
+        break;
     }
     
   }while(opcao != 0);
