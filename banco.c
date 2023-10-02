@@ -100,3 +100,53 @@ int deletarCliente(listaClientes *Lt){
     printf("Cpf não encontrado");
     return 1;
 }
+
+void debito(listaClientes *Lt){
+   char cpf[11]; //oque sera digitado pelo usuario
+   //printf();
+   char senha[10]; //oque sera digitado pelo usuario
+   float valorDeb;
+   printf("Digite seu cpf: ");
+   scanf("%s", cpf);
+   printf("Digite sua senha: ");
+   scanf("%s",senha);
+   printf("Valor que deseja ser retirado: ");
+   scanf("%f",&valorDeb);
+   int cpfCompara;
+   int senhaCompara;
+   float tarifa =0;
+   for (int i = 0; i< Lt->quantidade; i++ ){
+   cpfCompara = strcmp(cpf,Lt->cliente[i].cpf);
+   senhaCompara = strcmp(senha,Lt->cliente[i].senha);
+     if( cpfCompara == -10){ //Número da -10 que quando a string é igual
+       //printf("Usuario encontrado\n");
+       if(senhaCompara == -10){
+         if(Lt->cliente[i].tipoConta == 0){ //conta comum
+           tarifa = valorDeb*0.05;
+           valorDeb = valorDeb + tarifa;
+           int conf = Lt->cliente[i].saldo - valorDeb;
+           if(conf >= -1000){
+           Lt->cliente[i].saldo = Lt->cliente[i].saldo - valorDeb;
+           }
+           else{
+             printf("Debito recusado, valor excedeu o limite(-1000)\n");
+           }
+         }
+         else{ //Conta plus
+           tarifa = valorDeb*0.03;
+           valorDeb = valorDeb + tarifa;
+           int conf = Lt->cliente[i].saldo - valorDeb;
+           if(conf >= -5000){
+           Lt->cliente[i].saldo = Lt->cliente[i].saldo - valorDeb;
+           }
+           else{
+             printf("Debito recusado, valor excedeu o limite(-5000)\n");
+         } 
+      }
+    
+      
+   }
+     
+ }
+ }
+ }

@@ -19,6 +19,9 @@ int main(void) {
       case 3 :
         listaCliente(Lt);
         break;
+      case 4 :
+        debito(&Lt);
+        break;
     }
     
   }while(opcao != 0);

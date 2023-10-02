@@ -24,6 +24,7 @@ void menu();
 void criaCliente(listaClientes *Lt);
 int deletarCliente(listaClientes *Lt);
 void listaCliente(listaClientes Lt);
+void debito(listaClientes *Lt);
 
 void clearBuffer();
 
