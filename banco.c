@@ -11,6 +11,7 @@ void menu(){
   printf("6. Extrato\n");
   printf("7. Transferência entre contas\n");
   printf("8. Sair\n");
+  printf("\n");
 }
 //strcmp -10 igual(Pelos testes feitos toda vez que a string era igual o valor foi -10, se não o valor dava "aleatorio", de negativo a positivo)
 
@@ -101,7 +102,7 @@ int deletarCliente(listaClientes *Lt){
     return 1;
 }
 
-void debito(listaClientes *Lt){
+ void debito(listaClientes *Lt){
    char cpf[11]; //oque sera digitado pelo usuario
    //printf();
    char senha[10]; //oque sera digitado pelo usuario
@@ -150,3 +151,21 @@ void debito(listaClientes *Lt){
  }
  }
  }
+
+void deposito(listaClientes *Lt){
+  int numero = 0;
+  float novoSaldo_dest = 0;
+  float valorDeposito;
+  char cpfDest[11];//digitado pelo usuario
+  printf("Digite valor do cpf do destinatário: ");
+  scanf("%s", cpfDest);
+  printf("Digite o valor do depósito: ");
+  scanf("%f", &valorDeposito);
+  for (int i = 0; i< Lt->quantidade; i++ ){
+   numero = strcmp(cpfDest,Lt->cliente[i].cpf); //strcmp retorna um numero
+     if( numero == -10){ //Número da -10 que quando a string é igual
+       novoSaldo_dest = Lt->cliente[i].saldo + valorDeposito;
+       Lt->cliente[i].saldo = novoSaldo_dest; 
+      }
+   }
+}

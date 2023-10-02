@@ -1,4 +1,5 @@
-#include <stdio.h>
+
+  #include <stdio.h>
 #include "banco.h"
 
 int main(void) {
@@ -21,6 +22,9 @@ int main(void) {
         break;
       case 4 :
         debito(&Lt);
+        break;
+      case 5 :
+        deposito(&Lt);
         break;
     }
     
