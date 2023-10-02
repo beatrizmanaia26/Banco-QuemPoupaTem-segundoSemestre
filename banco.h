@@ -22,4 +22,9 @@ typedef enum{err_cria,err_del,err_tipo,err_valor,err_saldo_comum}erros;
 void menu();
 
 void criaCliente(listaClientes *Lt);
+int deletarCliente(listaClientes *Lt);
 void listaCliente(listaClientes Lt);
+
+void clearBuffer();
+
+//Tudo deve ser armazenado em arquivo binario, e o extrato tem que gerar um txt com todas as informações(data, tarifa,valor adicionado ou removido da conta, e saldo final)

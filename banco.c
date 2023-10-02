@@ -14,7 +14,6 @@ void menu(){
 }
 //strcmp -10 igual(Pelos testes feitos toda vez que a string era igual o valor foi -10, se não o valor dava "aleatorio", de negativo a positivo)
 
-
 void clearBuffer(){
   int c;
   while ((c = getchar()) != '\n' && c != EOF) { }
@@ -58,6 +57,7 @@ void criaCliente(listaClientes *Lt){
     printf("Erro ao criar a conta");
   } 
 }
+
 void listaCliente(listaClientes Lt){
   printf("\n");
   for (int ToDo = 0; ToDo< Lt.quantidade; ToDo++ ){
@@ -72,4 +72,31 @@ void listaCliente(listaClientes Lt){
     }
     printf("\n");
 }
+}
+
+int deletarCliente(listaClientes *Lt){
+  char cpfDel[11];
+  int compara;
+    printf("Digite o cpf da conta que deseja deletar: ");
+    scanf("%s",cpfDel);
+    if (Lt->quantidade == 0){   
+        printf("Nenhum cpf encontrado :( \n ");
+        return 1;
+    }
+     for (int search = 0; search< Lt->quantidade; search++ ){
+       compara = strcmp(cpfDel,Lt->cliente[search].cpf);
+       if(compara == -10){
+        strcpy(Lt->cliente[search].cpf, Lt->cliente[search +1].cpf);
+        Lt->cliente[search].saldo = Lt->cliente[search +1].saldo;   
+        Lt->cliente[search].tipoConta = Lt->cliente[search +1].tipoConta;  
+        strcpy(Lt->cliente[search].nome, Lt->cliente[search +1].nome); 
+        strcpy(Lt->cliente[search].senha, Lt->cliente[search +1].senha);      
+        Lt->quantidade--;
+        printf("Deletou com sucesso!\n");
+        return 0;
+        break;
+       }
+     }
+    printf("Cpf não encontrado");
+    return 1;
 }
