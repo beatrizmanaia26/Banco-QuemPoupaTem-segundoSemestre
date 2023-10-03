@@ -25,7 +25,7 @@ int main(void) {
       case 5 :
         deposito(&Lc);
         break;
-      case 6 :
+      case 7 :
         transferencia(&Lc);
     }
     
