@@ -44,7 +44,7 @@ void criaCliente(listaClientes *Lc){
       Lc->cliente[Lc->quantidade].tipoConta = 1;
     }
     else{
-      printf("Erro\n");
+      printf("Erro\n"); //USAR ENUM
       return;
     }
     printf("Digite seu saldo: ");
@@ -170,10 +170,9 @@ void deposito(listaClientes *Lc){
        return;
       }
    }
-  printf("Erro ao depositar ):" );
+  printf("Erro ao depositar :(" );
   printf("\n");
 }
-
 
 void transferencia(listaClientes *Lc){
   char cpfOri[11]; //o que sera digitado pelo usuario
@@ -247,4 +246,16 @@ int salva_clientes(listaClientes Lc, char nomeArquivo[]){
     fclose(f);
     return 0;
 }
+
+int ler(listaClientes *Lc, char nome[]){  
+    FILE *f = fopen(nome, "rb");
+    if (f == NULL){
+        printf("Falha ao abrir o arquivo");
+        return 1;
+    } 
+    fread(Lc, sizeof(listaClientes), 1, f); //1 pq é 1 struct (se fosse o tarefa seria 100 em quantidade)
+    fclose(f);
+    return 0;
+}
+
   

@@ -22,14 +22,15 @@ typedef enum{err_cria,err_del,err_tipo,err_valor,err_saldo_comum}erros; //??????
 
 void menu();
 
-
 void criaCliente(listaClientes *Lc);
 void deletarCliente(listaClientes *Lc);
 void listaCliente(listaClientes Lc);
 void debito(listaClientes *Lc);
 void deposito(listaClientes *Lc);
 void transferencia(listaClientes *Lc);
+void extrato(listaClientes Lc, char arquivoExtrato[]); 
 int salva_clientes(listaClientes Lc, char nomeArquivo[]);
+int ler(listaClientes *Lc, char nome[]);
 
 void clearBuffer();
 

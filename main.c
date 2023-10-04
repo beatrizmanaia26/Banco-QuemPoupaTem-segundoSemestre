@@ -3,9 +3,10 @@
 
 int main(void) {
   char arquivo[]= "clientes";
+  char arquivo_extrato[] = "-";
   listaClientes Lc;
   int codigo;
-  //codigo = ler_arquivo(&Lc, arquivo);  l
+  codigo = ler(&Lc, arquivo);  
   int opcao;
   do{
     menu();
@@ -38,5 +39,4 @@ int main(void) {
   if(codigo != 0){
         printf("Erro ao salvar as tarefas\n");
     }
-
 }
