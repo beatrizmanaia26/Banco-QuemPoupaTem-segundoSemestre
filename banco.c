@@ -3,7 +3,7 @@
 #include <string.h>
 
 void menu(){
-
+  printf("\n");
   printf("1. Novo Cliente\n");
   printf("2. Apaga Cliente\n");
   printf("3. Listar Clientes\n");
@@ -103,7 +103,7 @@ void deletarCliente(listaClientes *Lc){
     return;
 }
 
- void debito(listaClientes *Lc){
+void debito(listaClientes *Lc){
    char cpf[11]; //o que sera digitado pelo usuario
    char senha[10]; //o que sera digitado pelo usuario
    float valorDeb;
@@ -174,6 +174,7 @@ void deposito(listaClientes *Lc){
   printf("\n");
 }
 
+
 void transferencia(listaClientes *Lc){
   char cpfOri[11]; //o que sera digitado pelo usuario
   char cpfDest[11];//digitado pelo usuario
@@ -235,4 +236,15 @@ void transferencia(listaClientes *Lc){
      }
    }
  }
+
+int salva_clientes(listaClientes Lc, char nomeArquivo[]){
+  FILE *f = fopen(nomeArquivo,"wb");
+    if (f == NULL){ //vê se valor do ponteiro ta apontando pra NULL
+        printf("Falha ao abrir o arquivo");
+        return 1;
+    }
+    fwrite(&Lc, sizeof(listaClientes), 1, f);
+    fclose(f);
+    return 0;
+}
   
