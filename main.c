@@ -28,9 +28,12 @@ int main(void) {
       case 5 :
         deposito(&Lc);
         break;
-      case 7 :
-        transferencia(&Lc);
+      case 6:
+        extrato(Lc, arquivo_extrato);
         break;
+       case 7 :
+         transferencia(&Lc);
+         break;
     }
     
   }while(opcao != 0);
@@ -39,4 +42,5 @@ int main(void) {
   if(codigo != 0){
         printf("Erro ao salvar as tarefas\n");
     }
+
 }
