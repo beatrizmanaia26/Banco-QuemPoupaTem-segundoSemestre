@@ -35,7 +35,7 @@ int main(void) {
          transferencia(&Lc);
          break;
     }
-    
+    codigo = salva_clientes(Lc, arquivo);
   }while(opcao != 0);
 
   codigo = salva_clientes(Lc, arquivo);
