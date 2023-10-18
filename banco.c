@@ -73,6 +73,7 @@ void listaCliente(listaClientes Lc){
     printf("Nome: %s\t\n",Lc.cliente[indice].nome);
     printf("Cpf: %ld\n",Lc.cliente[indice].cpf);
     printf("Saldo: %.2f\t\n",Lc.cliente[indice].saldo);
+    // printf("Indice do cliente: %d\t\n",indice);
     if(Lc.cliente[indice].tipoConta == 0){
       printf("Tipo de Conta: Comum\t\n");
     }
@@ -84,24 +85,31 @@ void listaCliente(listaClientes Lc){
 
 void deletarCliente(listaClientes *Lc){
   long cpfDel;
+  char arquivo[30];
     printf("Digite o cpf da conta que deseja deletar: ");
     scanf("%ld",&cpfDel);
     if (Lc->quantidade == 0){   
         printf("Nenhum cpf encontrado :( \n ");
         return;
     }
-     for (int indice = 0; indice < Lc->quantidade; indice++ ){
-       if(cpfDel == Lc->cliente[indice].cpf){
-         Lc->cliente[indice].cpf = Lc->cliente[indice + 1].cpf;
-         Lc->cliente[indice].saldo = Lc->cliente[indice + 1].saldo;   
-         Lc->cliente[indice].tipoConta = Lc->cliente[indice + 1].tipoConta;  
-         strcpy(Lc->cliente[indice].nome, Lc->cliente[indice + 1].nome); 
-         Lc->cliente[indice].senha = Lc->cliente[indice + 1].senha; 
-         strcpy(Lc->cliente[indice].extrato->texto, Lc->cliente[indice + 1].extrato->texto);
+     for (int indiceCpf = 0; indiceCpf < Lc->quantidade; indiceCpf++ ){
+       if(cpfDel == Lc->cliente[indiceCpf].cpf){
+         for (int indice = indiceCpf; indice < Lc->quantidade; indice++ ){
+           Lc->cliente[indice].cpf = Lc->cliente[indice + 1].cpf;
+           Lc->cliente[indice].saldo = Lc->cliente[indice + 1].saldo;   
+           Lc->cliente[indice].tipoConta = Lc->cliente[indice + 1].tipoConta;  
+           strcpy(Lc->cliente[indice].nome, Lc->cliente[indice + 1].nome); 
+           Lc->cliente[indice].senha = Lc->cliente[indice + 1].senha;
+           strcpy(Lc->cliente[indice].extrato->texto, Lc->cliente[indice + 1].extrato->texto);
+           Lc->cliente[indice].quant_extrato = Lc->cliente[indice + 1].quant_extrato;
+         }
          Lc->quantidade--;
+         sprintf(arquivo,"extratoCpf:%ld.txt", cpfDel);
+         remove(arquivo);
+           
          printf("Deletou com sucesso!\n");
          return;
-         break;
+    
        }
      }
     printf("Cpf não encontrado");
@@ -190,17 +198,19 @@ void extrato(listaClientes Lc, char arquivoExtrato[]){
   long cpf; //o que sera digitado pelo usuario
   int senha; //o que sera digitado pelo usuario
   int clienteEncontrado = 0;
-  FILE *f = fopen("arquivoExtrato.txt","w");
+  char arquivo[30];
   printf("Digite seu cpf: ");
   scanf("%ld", &cpf);
   printf("Digite sua senha: ");
   scanf("%d",&senha);
-  if (f == NULL){ //vê se valor do ponteiro ta apontando pra NULL
-      printf("Falha ao abrir o arquivo");
-    }
   for (int indice = 0; indice < Lc.quantidade; indice++){ //Procurando o cliente
      if( cpf == Lc.cliente[indice].cpf){ 
        if(senha == Lc.cliente[indice].senha){
+         sprintf(arquivo,"extratoCpf:%ld.txt",cpf);
+         FILE *f = fopen(arquivo,"w");
+         if (f == NULL){ //vê se valor do ponteiro ta apontando pra NULL
+             printf("Falha ao abrir o arquivo");
+           }
          //Pegando todos os extratos para colocar no arquivo
          for(int indiceExtrato = 0; indiceExtrato < Lc.cliente[indice].quant_extrato; indiceExtrato++){
            fprintf(f,"%s\n",Lc.cliente[indice].extrato[indiceExtrato].texto);
