@@ -35,6 +35,6 @@ A sétima (7. Transferência entre contas) é necessário que já existam no mí
 
 Assim, para ver como as contas ficaram após essa transferência é só listar clientes ou ver o extrato delas.  
 
-A nona (0. Sair) faz com que o loop de perguntar qual opção o usuário quer (1. Novo Cliente, 2. Apagar Cliente....) encerre. As informações são salvas no arquivo binário “clientes” sempre que o cliente realiza qualquer ação no nosso banco. 
+A oitava (0. Sair) faz com que o loop de perguntar qual opção o usuário quer (1. Novo Cliente, 2. Apagar Cliente....) encerre. As informações são salvas no arquivo binário “clientes” sempre que o cliente realiza qualquer ação no nosso banco. 
 
 ![image](https://github.com/beatrizmanaia26/Banco-QuemPoupaTem-segundoSemestre/assets/130764598/50595e4e-92cb-413e-b310-d045190fb594)
